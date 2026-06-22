@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Voxel Arena</title>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./icon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./icon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <script
+      src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
+      integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- own styles -->
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/aim-backdrop.css" />
+    <link rel="stylesheet" href="./styles/chat.css" />
+    <link rel="stylesheet" href="./styles/crosshair.css" />
+    <link rel="stylesheet" href="./styles/deathmessages.css" />
+    <link rel="stylesheet" href="./styles/hud.css" />
+    <link rel="stylesheet" href="./styles/menu.css" />
+    <link rel="stylesheet" href="./styles/playermodel.css" />
+    <link rel="stylesheet" href="./styles/scoreboard.css" />
+    <link rel="stylesheet" href="./styles/score-msg.css" />
+    <link rel="stylesheet" href="./styles/viewmodel.css" />
+    <link rel="stylesheet" href="./styles/powerup.css" />
+
+    <!-- own scripts -->
+    <script src="./js/world.js" defer></script>
+    <script src="./js/player.js" defer></script>
+    <script src="./js/network.js" defer></script>
+    <script src="./js/partner.js" defer></script>
+    <script src="./js/snd.js" defer></script>
+    <script src="./js/scoreboard.js" defer></script>
+    <script src="./js/chat.js" defer></script>
+    <script src="./js/powerups.js" defer></script>
+  </head>
+  <body>
+    <div class="viewport-wrapper">
+      <div id="viewport">
+        <div id="scene"></div>
+      </div>
+    </div>
+    <div class="viewport-wrapper">
+      <div id="viewmodel-animation">
+        <div id="viewmodel-position">
+          <div class="viewmodel">
+            <div class="box body">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="box aim">
+              <div></div>
+              <div></div>
+              <div class="xh"></div>
+              <div></div>
+              <div></div>
+              <div class="xh"></div>
+            </div>
+            <div class="box mag">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="box aim2">
+              <div></div>
+              <div></div>
+              <div class="xh"></div>
+              <div></div>
+              <div></div>
+              <div class="xh"></div>
+            </div>
+            <div class="box arm">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="crosshair-wrapper">
+      <div class="crosshair"></div>
+    </div>
+    <div class="aim-backdrop"></div>
+    <div class="hud">
+      <div>
+        <span id="health">100</span>
+        <label>health</label>
+      </div>
+      <div>
+        <span id="armor">100</span>
+        <label>armor</label>
+      </div>
+      <div class="placeholder"></div>
+      <div>
+        <span id="ammo">100</span>
+        <label>ammo</label>
+      </div>
+    </div>
+    <div id="chat-input">
+      <label>say:</label>
+      <input />
+    </div>
+    <div id="chat"></div>
+    <div id="deathmessages"></div>
+    <dialog class="menu">
+      <h1>Voxel Arena</h1>
+      <h2>controls:</h2>
+      <div class="row">
+        <div class="col">
+          <div class="item">
+            <div class="key">W</div>
+            <label>forward</label>
+          </div>
+          <div class="item">
+            <div class="key">A</div>
+            <label>right</label>
+          </div>
+          <div class="item">
+            <div class="key">S</div>
+            <label>backward</label>
+          </div>
+          <div class="item">
+            <div class="key">D</div>
+            <label>left</label>
+          </div>
+          <div class="item">
+            <div class="key">Space</div>
+            <label>jump</label>
+          </div>
+          <div class="item">
+            <div class="key">Shift</div>
+            <label>duck</label>
+          </div>
+          <div style="flex: 1 1 100%"></div>
+          <label>movement</label>
+        </div>
+        <div class="col">
+          <div class="item">
+            <img
+              src="./assets/mouse.svg"
+              alt="mouse"
+              style="filter: invert(1)"
+            />
+            <label>look</label>
+          </div>
+          <div class="item">
+            <img src="./assets/lmb.svg" alt="mouse" style="filter: invert(1)" />
+            <label>shoot</label>
+          </div>
+          <div class="item">
+            <img src="./assets/rmb.svg" alt="mouse" style="filter: invert(1)" />
+            <label>aim down on sights</label>
+          </div>
+          <div style="flex: 1 1 100%"></div>
+          <label>look</label>
+        </div>
+        <div class="col">
+          <div class="item">
+            <div class="key">E</div>
+            +
+            <img src="./assets/lmb.svg" alt="mouse" style="filter: invert(1)" />
+            <label>build</label>
+          </div>
+          <div class="item">
+            <div class="key">Tab</div>
+            <label>scoreboard</label>
+          </div>
+          <div class="item">
+            <div class="key">C</div>
+            <label>activate chat</label>
+          </div>
+          <div style="flex: 1 1 100%"></div>
+          <label>misc</label>
+        </div>
+      </div>
+      <h2>set name:</h2>
+      <form>
+        <div style="width: 100%">
+          <input placeholder="xXx_Pu$$Y_HUNT3R_xXx" required name="name" />
+        </div>
+        <div class="btn-holder">
+          <button type="submit">play</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="scoreboard">
+      <h1>
+        scoreboard
+        <div>players 10/10</div>
+      </h1>
+      <table>
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>score</th>
+            <th>kills</th>
+            <th>deaths</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div id="powerup-badges"></div>
+    <div id="fps"></div>
+  </body>
+</html>
