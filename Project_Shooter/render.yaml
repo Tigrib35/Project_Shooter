@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: voxel-arena
+    runtime: static
+    rootDir: blockshooter-master
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
